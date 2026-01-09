@@ -55,5 +55,5 @@ app.use((req, res, next) => {
 setupRoutes(app);
 const PORT = process.env.PORT_BACKEND;
 app.listen(PORT, () => {
-    console.log('\x1b[35m%s\x1b[0m',`✅teracoop backend services is running on port ${PORT}`);
+    console.log('\x1b[35m%s\x1b[0m',`✅conqueror backend services is running on port ${PORT}`);
 });

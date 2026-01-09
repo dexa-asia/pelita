@@ -1,11 +1,10 @@
 import { Sequelize, DataTypes } from "sequelize";
 import db from "../config/database.js";
-import MemberType from "./member_type.js";
 import MemberStatus from "./member_status.js";
-import Branch from "./branch.js";
-import Collection from "./collection.js";
 import MemberClass from "./member_class.js";
-import MemberCollection from "./member_collection.js";
+import MemberLevel from "./member_level.js";
+import SystemChanel from "./system_chanel.js";
+import SystemSource from "./system_source.js";
 
 const Member= db.define('member',{
   id: {
@@ -20,12 +19,18 @@ const Member= db.define('member',{
     field: 'member_id',
     unique: 'member_id',
   },
-  typeId: {
+  registerId: {
+    type: DataTypes.STRING(18),
+    allowNull: true,
+    field: 'register_id',
+    unique: 'register_id',
+  },
+  levelId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'type_id',
+    field: 'level_id',
     references: {
-      model: 'member_type',
+      model: 'member_level',
       key: 'id'
     }
   },
@@ -47,99 +52,10 @@ const Member= db.define('member',{
       key: 'id'
     }
   },
-  joinDate: {
+  registerDate: {
     type: DataTypes.DATEONLY,
-    field: 'join_date',
+    field: 'register_date',
     allowNull: true
-  },
-  point: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    field: 'point',
-    defaultValue: 0
-  },
-  trxCount: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    field: 'trx_count',
-    defaultValue: 0
-  },
-  balancePrincipal: {
-    type: DataTypes.DECIMAL(15,2),
-    field: 'balance_principal',
-    allowNull: true,
-    defaultValue: 0.00
-  },
-  balanceMandatory: {
-    type: DataTypes.DECIMAL(15,2),
-    field: 'balance_mandatory',
-    allowNull: true,
-    defaultValue: 0.00
-  },
-  balanceFree: {
-    type: DataTypes.DECIMAL(15,2),
-    field: 'balance_free',
-    allowNull: true,
-    defaultValue: 0.00
-  },
-  balance: {
-    type: DataTypes.DECIMAL(15,2),
-    field: 'balance',
-    allowNull: true,
-    defaultValue: 0.00
-  },
-  trxOmzet: {
-    type: DataTypes.DECIMAL(15,2),
-    allowNull: true,
-    field: 'trx_omzet',
-    defaultValue: 0.00
-  },
-  billing: {
-    type: DataTypes.DECIMAL(15,2),
-    allowNull: false,
-    field: 'billing',
-    defaultValue: 0.00
-  },
-  isFunder: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    field: 'is_funder',
-    defaultValue: false
-  },
-  isLender: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    field: 'is_lender',
-    defaultValue: false
-  },
-  branchId: {
-    type: DataTypes.STRING(18),
-    allowNull: false,
-    field: 'branch_id',
-  },
-  accountNum: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    field: 'account_num',
-    defaultValue: 0
-  },
-  colId: {
-    type: DataTypes.INTEGER,
-    allowNull: null,
-    field: 'col_id',
-    defaultValue: null
-  },
-  isBusiness: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    field: 'is_business',
-    defaultValue: false
-  },
-  businessActivationDatetime: {
-    type: DataTypes.DATE,
-    allowNull: true,
-    field: 'business_activation_datetime',
-    defaultValue: null
   },
   referredBy: {
     type: DataTypes.STRING(18),
@@ -152,6 +68,35 @@ const Member= db.define('member',{
     allowNull: true,
     field: 'registered_by',
     defaultValue:null,
+  },
+  approvedBy: {
+    type: DataTypes.STRING(18),
+    allowNull: true,
+    field: 'approved_by',
+    defaultValue:null,
+  },
+  approveDateTime: {
+    type: DataTypes.DATEONLY,
+    field: 'approve_date_time',
+    allowNull: true
+  },
+  sourceId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    field: 'source_id',
+    references: {
+      model: 'system_source',
+      key: 'id'
+    }
+  },
+  chanelId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    field: 'chanel_id',
+    references: {
+      model: 'system_chanel',
+      key: 'id'
+    }
   },
   
 },
@@ -198,16 +143,10 @@ Member.belongsTo(MemberClass,{
   as:'class'
 });
 
-Member.belongsTo(MemberType,{
-  foreignKey: 'type_id',
+Member.belongsTo(MemberLevel,{
+  foreignKey: 'level_id',
   targetKey:'id',
-  as:'type'
-});
-
-Member.belongsTo(MemberCollection,{
-  foreignKey: 'col_id',
-  targetKey:'id',
-  as:'collection'
+  as:'level'
 });
 
 Member.belongsTo(MemberStatus,{
@@ -216,11 +155,18 @@ Member.belongsTo(MemberStatus,{
   as:'status',
 });
 
-Member.belongsTo(Branch,{
-  foreignKey: 'branch_id',
-  targetKey:'branchId',
-  as:'branch',
+Member.belongsTo(SystemChanel,{
+  foreignKey: 'chanel_id',
+  targetKey:'id',
+  as:'chanel'
 });
+
+Member.belongsTo(SystemSource,{
+  foreignKey: 'source_id',
+  targetKey:'id',
+  as:'source'
+});
+
 
 Member.genMemberId = async () => {
   const prefix = new Date().getFullYear();
@@ -236,7 +182,6 @@ Member.genMemberId = async () => {
   });
 
   if (max!==null) {
-    
     const lastNumber = parseInt(max.memberId.slice(prefix.toString().length)) + 1;
     const paddedNumber = lastNumber.toString().padStart(7, '0');
     return `${prefix}${paddedNumber}`;
@@ -244,25 +189,6 @@ Member.genMemberId = async () => {
     return `${prefix}0000001`;
   }
 };
-
-//sync all balance and account resume of a member
-Member.syncAccount=async(memberId)=>{
-  try {
-    const query =`UPDATE member 
-      SET mandatory_balance =(SELECT SUM(amount) FROM member_mandatory WHERE member_id=:memberId),
-      free_balance = (SELECT balance FROM saving_account WHERE member_id=:memberId),
-      account_num=(SELECT COUNT(*) FROM saving_account WHERE member_id=:memberId),
-      trx=(SELECT COUNT(*) FROM trx WHERE member_id=:memberId)
-      WHERE member_id=:memberId;`;
-    await db.query(query,{
-      replacements:
-        {memberId:memberId}
-    });
-
-  } catch (error) {
-    console.error('Error syncing member summary', error);
-  }
-}
 
 export default Member;
 

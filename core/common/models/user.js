@@ -5,8 +5,6 @@ import UserPrivilege from "./user_privilege.js";
 import OneBizz from "../services/onebizz.js";
 import Notifier from "./notifier.js";
 
-import Employee from "./employee.js";
-import Branch from "./branch.js";
 import {imgPath} from "#common/config/params";
 
 const User=db.define('user',{
@@ -281,83 +279,6 @@ User.loginAdmin = async(username,password)=>{
   }
 }
 
-User.loginStaff = async(username,password)=>{
-  const user = await db.query("SELECT user_name,email,privilege,`user`.`member_id`,name,access_token,is_enabled,primary_auth,verification_auth FROM `user` JOIN `member_data` ON `user`.`member_id`=`member_data`.`member_id` JOIN `user_privilege` ON `user`.`priv_id`=`user_privilege`.`id` WHERE `user_name`=:pusername", { 
-    type: QueryTypes.SELECT,
-    replacements: {
-      pusername: username,
-    },
-  });
-
-  if(user.length > 0){
-    const checkP = await OneBizz.checkPassword(password,user[0].primary_auth,user[0].verification_auth);
-    if(checkP){
-      
-      const emp = await Employee.findOne({
-        where:{
-          memberId:user[0].member_id
-        },
-        include:[
-          {
-            model:Branch,
-            as:'branch',
-            attributes:['branch','address','code','disCode']
-          },
-          {
-            model:MemberData,
-            as:'data',
-            attributes:['avatar']
-          }
-        ]
-      })
-
-      if(!emp){
-        const response ={
-          "status":61,
-          "message":"employee data doesnt exist",
-        }
-        return response;
-      }
-
-
-      const response ={
-        "status":68,
-        "message":"user found",
-        "data":{
-          "userName":user[0].username,
-          "name":user[0].name,
-          "privilege":user[0].privilege,
-          "accessToken":user[0].access_token,
-          "memberId":user[0].member_id,
-          "empId":emp.empId,
-          "branchId":emp.branchId,
-          "branch":emp.branch.branch,
-          "branchAddress":emp.branch.address,
-          "branchCode":emp.branch.disCode,
-          "branchPrefix":emp.branch.code,
-          "avatar":imgPath+"users/"+ emp.data.avatar,
-          "check":checkP,
-        }
-      }
-      return response;
-    }
-    else{
-      const response ={
-        "status":60,
-        "message":"invalid password",
-      }
-      return response;
-    }
-
-  }
-  else{
-    const response ={
-      "status":60,
-      "message":"invalid user",
-    }
-    return response;
-  }
-}
 
 
 User.confirmOTA = async (memberId, ota) => {

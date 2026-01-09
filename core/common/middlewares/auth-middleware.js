@@ -2,8 +2,6 @@ import cache from '#root/common/config/cache';
 import User from '#root/common/models/user';
 import MemberData from '#root/common/models/member_data';
 import Member from '#root/common/models/member';
-import Employee from '#root/common/models/employee';
-import Branch from '#root/common/models/branch';
 
 class authMiddleware {
     constructor(name) {
@@ -101,12 +99,7 @@ class authMiddleware {
             return next(); // ✅ Skip DB lookup
           }
           else{
-            const ep = await Employee.findOne({
-              where:{
-                memberId:user.memberId
-              },
-              attributes:['empId','branchId']
-            })
+            /*
 
             const origin = {
               "memberId": user.memberId,
@@ -116,6 +109,7 @@ class authMiddleware {
               "empId":ep.empId,
               "ip": req.socket.remoteAddress,
             };
+            */
             
             // 🔹 Store in cache for future requests
             cache.set(token, origin, 300); // 300s = 5 minutes TTL
