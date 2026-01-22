@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import express from "express"
 import cors from "cors";
-import authMiddleware from "./common/middlewares/auth-middleware.js";
-import setupRoutes from "./api-web/routes/index.js";
+import authMiddleware from "#middlewares/auth-middleware.js";
+import setupRoutes from "#api/api-web/routes/index.js";
 
 const app = express();
 app.use(express.json());
@@ -55,5 +55,5 @@ app.use((req, res, next) => {
 setupRoutes(app);
 const PORT = process.env.PORT_WEB;
 app.listen(PORT, () => {
-    console.log('\x1b[35m%s\x1b[0m',`✅teracoop web services is running on port ${PORT}`);
+    console.log('\x1b[35m%s\x1b[0m',`✅conqueror web services is running on port ${PORT}`);
 });

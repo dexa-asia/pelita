@@ -91,6 +91,7 @@ a,a:visited{text-decoration: none;color:var(--me-primary)}
 .text-bold{font-weight: 600;}
 .text-danger{color:#F62459!important}
 .text-gray{color:#999}
+.text-me-soft{color:var(--me-soft)}
 .text-me{color:var(--me-primary) !important;}
 .up-20{margin-top: -20px!important;}
 .with-border{border-bottom: 1px solid #f2f2f2;min-height: 25px;}

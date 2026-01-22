@@ -23,7 +23,7 @@ background: linear-gradient(to top, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Fir
 color:#fff
 }
 
-main{background-color:var(--me-base);height:100vh;padding-right: 10px;}
+main{background-color:var(--me-base);height:100vh;}
 a,a:visited{text-decoration: none;color:var(--me-primary)}
 .a4{font-size: .8em;}
 .ag-body,.ag-cell-value{font-size:.96em;color:var(--me-dark)!important}
@@ -70,6 +70,7 @@ a,a:visited{text-decoration: none;color:var(--me-primary)}
 .shadow:hover{box-shadow: 5px 5px 10px 2px var(--me-trans-primary)!important;}
 .superbold{font-weight: 600;}
 .vh-full{height:70vh;overflow: scroll;}
+.vh-min-100{min-height: 100vh;overflow: scroll;}
 .with-soft-border{border-bottom: 1px solid #f2f2d2;}
 
 .rounded-big{border-radius: 15px !important}

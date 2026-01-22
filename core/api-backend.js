@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import express from "express"
 import cors from "cors";
-import authMiddleware from "./common/middlewares/auth-middleware.js";
-import setupRoutes from "./api-backend/routes/index.js";
+import authMiddleware from "#middlewares/auth-middleware.js";
+import setupRoutes from "#api/api-backend/routes/index.js";
 
 const app = express();
 app.use(express.json());

@@ -1,6 +1,7 @@
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/css/site.css'
+import './assets/css/site-dark.css'
 import "primeicons/primeicons.css";
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'sweetalert2/dist/sweetalert2.min.css'

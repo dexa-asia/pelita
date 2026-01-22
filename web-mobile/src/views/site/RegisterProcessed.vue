@@ -11,27 +11,45 @@
                             </router-link>
                             <h1 class="form-title mt-3">Registrasi Diproses</h1>
                             <div class="text-gray mt-3 mb-5">
-                                <p>Terimakasih telah mengisi form pendaftaran menjadi anggota Partai Pelita.<br/>Team Admin akan melakukan validasi dan verifikasi.</p>
-                                <div class="d-flex mt-4 mb-2 text-dark">
-                                    <div class="col text-end pe-2">Nama Lengkap : </div>
-                                    <div class="col text-start">Salahudin Hakim</div>
-                                </div>
+                                <p>Terimakasih telah mengisi form pendaftaran menjadi anggota Partai Pelita.<br/>Berikut ini data keanggotaan anda.</p>
+                                
                                 <div class="d-flex mb-2 text-dark">
                                     <div class="col text-end pe-2">Nomor Pendaftaran : </div>
-                                    <div class="col text-start">0011213311</div>
+                                    <div class="col text-start">{{ member.memberId }}</div>
+                                </div>
+                                <div class="d-flex mb-2 text-dark">
+                                    <div class="col text-end pe-2">Nama Lengkap : </div>
+                                    <div class="col text-start">{{ member.name }}</div>
+                                </div>
+                                <div class="d-flex mb-2 text-dark">
+                                    <div class="col text-end pe-2">NIK : </div>
+                                    <div class="col text-start">{{ member.nik }}</div>
+                                </div>
+                                <div class="d-flex mb-2 text-dark">
+                                    <div class="col text-end pe-2">NO WHATSAPP : </div>
+                                    <div class="col text-start">{{ member.mobileDecoded }}</div>
                                 </div>
                                 <div class="d-flex mb-4 text-dark">
-                                    <div class="col text-end pe-2">Status Keanggotaan : </div>
-                                    <div class="col text-start text-warning"><i class="fa fa-spin fa-hourglass"></i>Menunggu verifikasi</div>
+                                    <div class="col text-end pe-2">Wilayah : </div>
+                                    <div class="col text-start">{{ member.district }}</div>
+                                </div>
+                                <div class="d-flex mb-4 text-dark">
+                                    <div class="col text-end pe-2">Alamat : </div>
+                                    <div class="col text-start">
+                                        {{ member.address }}<br/>
+                                        <span class="text-gray">KELURAHAN</span> {{ member.village }}<br/>
+                                        <span class="text-gray">KECAMATAN</span> {{ member.subdistrict }}<br/>
+                                        {{ member.district }}
+                                    </div>
                                 </div>
 
-                                <p>Status keanggotaan anda akan diinformasikan melalui whatsapp atau email</p>
+                                <p>Selamat Berjuang</p>
                             </div>
                         </div>
                         
                         <div class="with-dashed pb-1"></div>
                         <div class="text-center mt-3 mb-2">
-                            <button class="btn btn-primary">Kembali</button>
+                            <router-link class="btn btn-primary text-white" to="/">Kembali</router-link>
                         </div>
 
                     </div>
@@ -45,6 +63,25 @@
     .img-icon{width:100px}
 </style>
 <script setup>
+    import api from "@/services/api";
     import {ref,onMounted} from 'vue';
-    const isReal = ref(false);
+    import { useRoute } from "vue-router";
+
+    const member = ref({})
+    const route = useRoute();
+
+    onMounted(()=>{
+        fetchData()
+    })
+
+    async function fetchData(){
+        const postData={
+            uagent: 'web',
+            data: JSON.stringify({
+                memberId:route.params.memberId
+            })
+        }
+        const result = await api.post('/auth/view-processed',postData);
+        member.value = result.data.data;
+    }
 </script>

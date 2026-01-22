@@ -16,34 +16,34 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <router-link class="iconized text-center p-3 d-block" to="/register">
+                                <router-link class="iconized text-center p-3 d-block" to="/daftar">
                                     <i class="pi pi-user-plus fa-2x"></i><br/>
                                     Daftar<br/>Jadi Anggota
                                 </router-link>
                             </div>
                             <div class="col">
-                                <router-link class="iconized text-center p-3 d-block" to="/register">
+                                <router-link class="iconized text-center p-3 d-block" to="/cekstatus">
                                     <i class="pi pi-search fa-2x"></i><br/>
-                                    Cek Status Keanggotaan
+                                    Cek Status<br/>Keanggotaan
                                 </router-link>
                             </div>
                             <div class="col">
-                                <router-link class="iconized text-center p-3 d-block" to="/register">
+                                <router-link class="iconized text-center p-3 d-block" to="/">
                                     <i class="pi pi-user-edit fa-2x"></i><br/>
                                     Perbarui<br/>Data
                                 </router-link>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-3 d-none">
                             <div class="col">
-                                <router-link class="iconized text-center p-3 d-block" to="/register">
+                                <router-link class="iconized text-center p-3 d-block" to="/">
                                     <i class="pi pi-eye fa-2x"></i><br/>
                                     Informasi<br/>Partai
                                 </router-link>
                             </div>
                             <div class="col">
-                                <router-link class="iconized text-center p-3 d-block" to="/register">
+                                <router-link class="iconized text-center p-3 d-block" to="/">
                                     <i class="pi pi-calendar fa-2x"></i><br/>
                                     Agenda dan<br/>Pengumuman
                                 </router-link>

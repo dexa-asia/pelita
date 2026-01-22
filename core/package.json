@@ -22,10 +22,18 @@
     "mysql2": "^3.16.0",
     "node-cache": "^5.1.2",
     "sequelize": "^6.37.7",
+    "sharp": "^0.34.5",
     "striptags": "^3.2.0"
   },
   "imports": {
-    "#root/*": "./*.js",
-    "#common/*": "./common/*.js"
+    "#domain/*": "./domain/*",
+    "#config/*": "./infrastructure/config/*",
+    "#middlewares/*": "./infrastructure/middlewares/*",
+    "#components/*": "./infrastructure/components/*",
+    "#shared/*": "./infrastructure/shared/*",
+    "#integrations/*": "./infrastructure/integrations/*",
+    "#adapter/*": "./infrastructure/adapter/*",
+    "#utils/*": "./infrastructure/utils/*",
+    "#api/*": "./api/*"
   }
 }

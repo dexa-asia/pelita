@@ -16,16 +16,22 @@ const router = createRouter({
           component: () => import('@/views/site/Home.vue'),
         },
         {
-          path: 'register',
-          name: 'auth-register',
+          path: 'daftar',
+          name: 'auth-daftar',
           component: () => import('@/views/site/Register.vue'),
           meta:{'title':'Register - Pelita','requiresAuth':false}
         },
         {
-          path: 'register-processed',
+          path: 'register-processed/:memberId',
           name: 'auth-register-processed',
           component: () => import('@/views/site/RegisterProcessed.vue'),
           meta:{'title':'Register - Pelita','requiresAuth':false}
+        },
+        {
+          path: 'cekstatus',
+          name: 'auth-cek',
+          component: () => import('@/views/site/RegisterCheck.vue'),
+          meta:{'title':'Cek Status Keanggotaan','requiresAuth':false}
         },
       ]
     },

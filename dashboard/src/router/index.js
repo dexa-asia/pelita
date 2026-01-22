@@ -41,8 +41,28 @@ const router = createRouter({
       name: 'logout',
       component: () => import('@/views/site/Logout.vue'),
     },
-    
-    
+     {
+      path: '/member',
+      component:MainLayout,
+      meta: {
+        requiresAuth: true,
+        title:'Anggota',
+      },
+      children:[
+        {
+          path:'',
+          name:'member-index',
+          component:() => import('@/views/member/Index.vue'),
+          meta:{title:'Anggota Aktif'}
+        },
+        {
+          path:'view/:memberId',
+          name:'member-view',
+          component:() => import('@/views/member/View.vue'),
+          meta:{title:'Detail Anggota'}
+        }
+      ]
+    },
     {
       path: '/user',
       component:MainLayout,
