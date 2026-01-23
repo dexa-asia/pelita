@@ -90,6 +90,25 @@ const router = createRouter({
           meta:{title:'Ubah Password'}
         },
       ]
+    },
+    {
+      path: '/forbidden',
+      component: MainLayout,
+      children:[
+        {
+          path:'',
+          name:'forbidden',
+          component: () => import('@/views/site/Forbidden.vue'),
+          meta:{
+            title:'Akses ditolak'
+          }
+        }
+      ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFoundRedirect',
+      redirect: '/forbidden',
     }
     
     

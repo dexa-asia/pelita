@@ -4,6 +4,7 @@ import Job from "#domain/models/job.js";
 import MaritalStatus from "#domain/models/marital_status.js";
 import SystemChanel from "#domain/models/system_chanel.js";
 import SystemSource from "#domain/models/system_source.js";
+import EducationLevel from "#domain/models/education_level.js";
 
 
 class DatasetService{
@@ -24,6 +25,12 @@ class DatasetService{
     static async getJob(){
         return await Job.findAll({
             attributes:['id','job']
+        })
+    }
+
+     static async getEducation(){
+        return await EducationLevel.findAll({
+            attributes:['id','level']
         })
     }
 

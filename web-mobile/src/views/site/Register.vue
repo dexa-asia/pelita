@@ -16,9 +16,14 @@
                             <div class="row d-flex mb-2">
                                 <div class="col-md-4 align-self-center">NIK/KTP</div>
                                 <div class="col">
-                                    <input type="text" v-model="nik" inputmode="numeric" placeholder="Nomor Induk Kependudukan/KTP" class="form-control" maxlength="16" @input="e => e.target.value = e.target.value.replace(/\D/g, '')" required=""/>
+                                    <input type="text" v-model="nik" inputmode="numeric" placeholder="Nomor Induk Kependudukan/KTP" class="form-control" maxlength="16" @input="sanitizeNik" required/>
+                                    <div v-if="nik && nik.length < 16" class="nik-info text-danger mt-2 fst-italic small">
+                                        NIK harus 16 digit
+                                    </div>
+
                                     <div v-if="isNikExist" class="alert bg-danger text-white mt-2">
-                                        <i class="fa fa-warning"></i> NIK yang anda masukan telah terdaftar di System Partai Pelita
+                                    <i class="fa fa-warning"></i>
+                                        NIK yang anda masukan telah terdaftar di System Partai Pelita
                                     </div>
                                 </div>
                             </div>
@@ -66,10 +71,16 @@
                             <div class="row d-flex mb-2">
                                 <div class="col-md-4 align-self-center">Nomor Whatsapp</div>
                                 <div class="col">
-                                    <input type="text" v-model="mobile" placeholder="08xxx" class="form-control" required/>
+                                    <input type="text" v-model="mobile" inputmode="numeric" placeholder="08xxx" class="form-control" @input="sanitizeMobile" required/>
+                                    <div v-if="mobile && mobile.length < 10" class="nik-info text-danger mt-2 fst-italic small">
+                                        Nomor whatsapp minimal 10 digit
+                                    </div>
                                     <div v-if="isNumberExist" class="alert bg-danger text-white mt-2">
                                         <i class="fa fa-warning"></i> Nomor whatsapp yang anda masukan telah terdaftar di System Partai Pelita
                                     </div>
+                                   
+
+                                   
                                 </div>
                             </div>
 
@@ -77,6 +88,15 @@
                                 <div class="col-md-4 align-self-center">Email <span class="small fst-italic text-gray">***jika ada</span></div>
                                 <div class="col">
                                     <input type="text" v-model="email" placeholder="opsional" class="form-control text-lowercase"/>
+                                </div>
+                            </div>
+
+                            <div class="row d-flex mb-2">
+                                <div class="col-md-4 align-self-center">Pendidikan Terakhir</div>
+                                <div class="col">
+                                    <select id="eduid" v-model="eduId" class="form-select">
+                                        <option v-for="e in educations" :value="e.id" :key="e.id">{{ e.level }}</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -193,7 +213,7 @@
                             </label>
                             <div class="with-dashed pb-1"></div>
                             <div class="text-center mt-3 mb-2">
-                                <button class="btn btn-primary" type="submit">Kirim Pendaftaran</button>
+                                <button class="btn btn-primary" type="submit" :disabled="isSubmitDisabled">Kirim Pendaftaran</button>
                             </div>
                         </form>
                     </div>
@@ -208,7 +228,7 @@
 </style>
 <script setup>
     import api from '@/services/api';
-    import {ref,onMounted} from 'vue';
+    import {ref,onMounted,watch,computed} from 'vue';
     import { useRouter } from 'vue-router';
     import Swal from 'sweetalert2';
 
@@ -226,21 +246,23 @@
     const villages = ref([]);
     const jobs = ref([])
     const maritals = ref([])
+    const educations = ref([])
 
     const provCode = ref(null);
     const disCode = ref(null);
     const sudCode = ref(null);
     const vilCode = ref(null);
     const name = ref(null);
-    const nik = ref(null);
+    const nik = ref('');
     const gender =ref(null);
     const birthDate = ref(null);
     const birthPlace = ref(null);
     const email = ref('');
-    const mobile = ref(null);
+    const mobile = ref('');
     const address = ref(null);
     const jobId = ref(null);
     const marId = ref(null);
+    const eduId = ref(null);
 
 
     const isReal =ref(false);
@@ -279,7 +301,16 @@
         fetchProvince()
         fetchMarital()
         fetchJobs()
+        fetchEducation()
     })
+
+    const sanitizeNik = (e) => {
+     nik.value = e.target.value.replace(/\D/g, '')
+    }
+
+    const sanitizeMobile = (e) => {
+     mobile.value = e.target.value.replace(/\D/g, '')
+    }
 
     function handleImageUpload(event) {
       const file = event.target.files?.[0]
@@ -332,6 +363,15 @@
         jobs.value = result.data.data;
     }
 
+    async function fetchEducation(){
+        const postData={
+            uagent: 'web',
+            data: JSON.stringify({})
+        }
+        const result = await api.post('/public/get-education',postData);
+        educations.value = result.data.data;
+    }
+
     async function fetchMarital(){
         const postData={
             uagent: 'web',
@@ -339,6 +379,68 @@
         }
         const result = await api.post('/public/get-marital',postData);
         maritals.value = result.data.data;
+    }
+
+    watch(nik, async (value, oldValue) => {
+        isNikExist.value = false
+
+        if (value.length === 16 && value !== oldValue) {
+            await checkNIK()
+        }
+    })
+
+    let mobileTimeout
+
+    watch(mobile, (value, oldValue) => {
+        isNumberExist.value = false
+        clearTimeout(mobileTimeout)
+
+        // terlalu pendek → tidak valid
+        if (value.length < 10) return
+
+        // terlalu panjang → invalid (guard)
+        if (value.length > 18) return
+
+        // tidak berubah secara substansial
+        if (value === oldValue) return
+
+        // debounce untuk hindari spam API
+        mobileTimeout = setTimeout(() => {
+            checkMobile()
+        }, 400)
+    })
+
+    const isSubmitDisabled = computed(() => {
+        // blokir jika ada duplikasi
+        if (isNikExist.value || isNumberExist.value) return true
+
+        // opsional: blokir jika input belum valid secara minimal
+        if (nik.value.length !== 16) return true
+        if (mobile.value.length < 10) return true
+
+        return false
+    })
+    
+    async function checkNIK(){
+        const postData={
+            uagent: 'web',
+            data: JSON.stringify({
+                nik:nik.value
+            })
+        }
+        const result = await api.post('/auth/check-status',postData);
+        isNikExist.value = result.data.data;
+    }
+
+    async function checkMobile(){
+        const postData={
+            uagent: 'web',
+            data: JSON.stringify({
+                mobile:mobile.value
+            })
+        }
+        const result = await api.post('/auth/check-mobile',postData);
+        isNumberExist.value = result.data.data;
     }
 
     async function submitForm(){
@@ -376,6 +478,7 @@
                 email:email.value.toLowerCase(),
                 jobId:jobId.value,
                 marId:marId.value,
+                eduId:eduId.value,
                 isReadyAction:isReadyAction.value,
                 isReadyStaff:isReadyStaff.value
             })

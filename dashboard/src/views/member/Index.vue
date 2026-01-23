@@ -66,11 +66,13 @@ const columnDefs = ref([
     { headerName: '#', valueGetter: 'node.rowIndex + 1',width:70,headerClass:'header-center',cellStyle:{'text-align':'center'} },
     { headerName: 'KODE SYSTEM', field: 'memberId',width:150,filter: 'agTextColumnFilter',floatingFilter:true },
     { headerName: 'NAMA', field: 'name',cellRenderer: linkRenderer,filter: 'agTextColumnFilter',floatingFilter:true },
-    { headerName: 'JENIS KELAMIN', field: 'gender',filter: 'agTextColumnFilter',floatingFilter:true },
+    { headerName: 'L/P', field: 'gender',width:100,filter: 'agTextColumnFilter',floatingFilter:true },
+    { headerName: 'USIA', field: 'age',width:100,filter: 'agTextColumnFilter',floatingFilter:true },
     { headerName: 'KAB/KOTA', field: 'district',filter: 'agTextColumnFilter',floatingFilter:true },
     { headerName: 'NO WHATSAPP', field: 'mobile',filter: 'agTextColumnFilter',floatingFilter:true },
     { headerName: 'TGL DAFTAR', field: 'registerDate',valueFormatter:formatDateAdapter},
-             
+    { headerName: 'SOURCE', field: 'source',floatingFilter:true},
+    { headerName: 'CHANEL', field: 'chanel',floatingFilter:true},
 ])
 
 const defaultColDef = ref({filter: true,})

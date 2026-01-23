@@ -122,6 +122,24 @@
                             <div class="col text-end">{{ mb.referrer }}</div>
                         </div>
                         <div class="row">
+                            <div class="col-md-4 text-me-soft">Source</div>
+                            <div class="col text-end">{{ mb.source }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 text-me-soft">Chanel</div>
+                            <div class="col text-end">{{ mb.chanel }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 text-me-soft">Status</div>
+                            <div v-if="mb.statusId===2" class="col text-end text-success">
+                                <i class="fa fa-check-circle me-1"></i>{{ mb.status }}
+                            </div>
+                            <div v-else class="col text-end text-warning">
+                                <i class="fa fa-exclamation-circle me-1"></i>{{ mb.status }}
+                            </div>
+                           
+                        </div>
+                        <div class="row">
                             <div class="col-md-4 text-me-soft">Terakhir Update</div>
                             <div class="col text-end">{{ formatUtcToWib(mb.lastUpdate) }}</div>
                         </div>

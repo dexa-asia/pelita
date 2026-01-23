@@ -1,6 +1,7 @@
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
+import { STORAGE_PATHS } from '../../config/paths.js';
 
 export const convertToJpg = async (req, res, next) => {
   try {

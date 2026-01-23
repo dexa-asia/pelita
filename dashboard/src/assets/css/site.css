@@ -60,6 +60,7 @@ a,a:visited{text-decoration: none;color:var(--me-primary)}
 .hide{display: none;}
 .page-title{font-size: 1.8em;font-weight:600;margin-bottom: 20px;}
 .page-title .annotation{font-size: .9rem!important;}
+.param-value .smallest{font-size: .6em!important;}
 
 .receipt{font-family: 'Courier New', Courier, monospace;border-left:2px dashed #f2f2f2;border-right:2px dashed #f2f2f2;border-top:2px solid #f2f2f2;border-bottom:2px solid #f2f2f2;padding:20px;}
 .round-big{border-radius: 20px;}
@@ -73,7 +74,6 @@ a,a:visited{text-decoration: none;color:var(--me-primary)}
 
 .rounded-big{border-radius: 15px !important}
 .section-caption{margin-top: 20px;margin-bottom:8px;font-size: 14px;font-weight:600;color:#395111}
-.smallest{font-size: .8em;}
 .swal-front {z-index: 2000 !important;}
 .swal2-title {color: #018786 !important;font-weight: 600;font-family: 'Caveat', sans-serif;}
 .swal2-icon {font-size: 1.1em;transform: scale(0.7); /* scale up all icons */}

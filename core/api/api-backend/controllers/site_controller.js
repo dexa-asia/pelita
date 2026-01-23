@@ -1,13 +1,18 @@
 
+import SummaryBackendService from "#domain/summary/summary-backend.service.js";
 import authService from "#domain/user/authorization.service.js";
 const siteIndex = async(req,res)=>{
     try{
         
-        
+        const resume = await SummaryBackendService.getResume()
+        const latest = await SummaryBackendService.getLatestMember()
         res.status(200).json({
             status: 68,
             message:"welcome to terracoop",
-            data:{}
+            data:{
+                resume,
+                latest
+            }
         });
     }
     catch (err){

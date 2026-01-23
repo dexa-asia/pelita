@@ -41,26 +41,26 @@
                                 <i class="pi pi-users icon-stat align-self-center ms-3"></i>
                                 <div class="col text-end">
                                     Total Anggota
-                                    <h2 class="param-value">{{ resume.member }}</h2>
-                                   
+                                    <h2 class="param-value">{{ resume.memberTotal }}</h2>
+                                    <div class="smaller">{{ resume.memberMale }} Pria <span class="me-3"></span> {{ resume.memberFemale }} Wanita</div>
                                 </div>
                                 
                             </div>
                             <div class="col d-flex bdr">
-                                <i class="pi pi-money-bill icon-stat align-self-center ms-3"></i>
+                                <i class="pi pi-user-plus icon-stat align-self-center ms-3"></i>
                                 <div class="col text-end">
-                                    Total Simpanan
-                                    <h2 class="param-value">{{ formatPrice(resume.savingAmount) }}</h2>
-                                    <div class="smaller">{{ resume.account }} Rekening</div>
+                                    Registrasi Bulan Ini
+                                    <h2 class="param-value">{{ formatPrice(resume.actualRegister) }}</h2>
+                                    <div class="smaller">Anggota Baru</div>
                                 </div>
                                 
                             </div>
                             <div class="col d-flex">
                                 <i class="pi pi-share-alt icon-stat align-self-center ms-3"></i>
                                 <div class="col text-end">
-                                    Total Pembiayaan
-                                    <h2 class="param-value">{{ resume.loanAmount }}</h2>
-                                    <div class="smaller">{{ resume.lender }} Nasabah</div>
+                                    Sebaran Anggota
+                                    <h2 class="param-value">{{ resume.disCodes }} <sup class="smallest text-gray">of 514</sup></h2>
+                                    <div class="smaller">Kabupaten/Kota</div>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                                         </div>
                                         <div>
                                             <div>{{ item.name }}</div>
-                                            <div class="smallest text-secondary">{{ item.address }}, {{ item.district }}</div>
+                                            <div class="smallest text-secondary">{{ item.area }}</div>
                                         </div>
                                         <div class="col text-end small align-self-center">
                                             {{ item.mobile }}
@@ -93,7 +93,7 @@
                         <div class="col">
                             <div class="card round-big borderless shadow">
                                 <div class="card-body">
-                                    <h6 class="superbold mb-4"><i class="pi pi-comment color-me me-2"></i>Pengajuan Pembiayaan</h6>
+                                    <h6 class="superbold mb-4"><i class="pi pi-comment color-me me-2"></i>Rekrutment Teraktif</h6>
                                     <div class="d-flex mb-2 with-soft-border pb-2 d-none">
                                         <div class="align-self-center me-3 small color-me">
                                             07:45
@@ -107,7 +107,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="fst-italic text-secondary bg-light p-4 rounded">Belum ada data pembiayaan diajukan</div>
+                                    <div class="fst-italic text-secondary bg-light p-4 rounded">Belum ada data referrer</div>
 
                                    
                                 </div>
@@ -117,7 +117,7 @@
 
                     <div class="card round-big borderless shadow mb-3 mt-3">
                         <div class="card-body">
-                            <h6 class="superbold mb-4 text-me"><i class="pi pi-chart-line color-me me-2"></i>Progress Transaksi Harian</h6>
+                            <h6 class="superbold mb-4 text-me"><i class="pi pi-chart-line color-me me-2"></i>Progress Registrasi Harian</h6>
                             <div class="fst-italic text-secondary bg-light p-4 rounded">Belum ada visualisasi grapik yang dapat ditampilkan</div>
                          </div>
                     </div>
@@ -126,49 +126,113 @@
                     
                     <div class="card round-big borderless shadow mb-3">
                         <div class="card-body">
-                            <h6 class="superbold mb-4"><i class="pi pi-cart-plus color-me me-2"></i>Transaksi Hari Ini</h6>
-                            <template v-if="recents.length > 0">
-                                <router-link v-for="(item,index) in recents" :key="index" class="d-flex mb-2 with-soft-border pb-2" :to="'/trx/view/'+item.trxId">
-                                    <div class="align-self-center me-3 small color-me">
-                                        {{ item.time }}
-                                    </div>
-                                    <div>
-                                        <div>{{ item.member }}</div>
-                                        <div class="smaller text-secondary">{{ item.type }}</div>
-                                    </div>
-                                    <div class="col align-self-center text-end small">
-                                        {{ formatPrice(item.total) }}
-                                    </div>
-                                </router-link>
-                            </template>
-                            <template v-else>
-                                <div class="fst-italic text-secondary bg-light p-4 rounded">Belum ada data transaksi</div>
-                            </template>
-
+                            <h6 class="superbold mb-4"><i class="pi pi-chart-bar color-me me-2"></i>Indeks Parameter Ver KPU</h6>
                             
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    100<sup class="smaller text-gray">%</sup> Provinsi
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    75<sup class="smaller text-gray">%</sup> Kabupaten/Kota
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    30<sup class="smaller text-gray">%</sup> Keterwakilan Perempuan
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
+                                </div>
+                            </div>
                             
-
                         </div>
                     </div>
 
-                    <div class="card round-big borderless shadow">
+                    <div class="card round-big borderless shadow mb-3">
                         <div class="card-body">
-                            <h6 class="superbold mb-4"><i class="pi pi-shop color-me me-2"></i>ATM/CRM Management</h6>
-                            <div class="d-flex mb-2 with-soft-border pb-2 d-none">
+                            <h6 class="superbold mb-4"><i class="pi pi-shop color-me me-2"></i>DPW</h6>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
                                 <div class="align-self-center me-3 small color-me">
-                                    <i class="pi pi-cog pi-spin"></i>
+                                    Dikukuhkan
                                 </div>
-                                <div>
-                                    <div>ATM #1</div>
-                                    <div class="smaller text-secondary">Jalan Kliningan No 7</div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
                                 </div>
-                                <div class="col align-self-center text-end small color-me">
-                                    Online
+                            </div>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    Terbentuk
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    Dalam proses
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    Belum Terbentuk
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    34 <i class="fa fa-caret-right text-dark"></i> <span class="text-gray">100 <sup class="smaller">%</sup></span>
                                 </div>
                             </div>
 
-                            <div class="fst-italic text-secondary bg-light p-4 rounded">Tidak ada mesin ATM terkoneksi pada system koperasi ini</div>
+                            
 
+                            
+                        </div>
+                    </div>
+
+                    <div class="card round-big borderless shadow mb-3">
+                        <div class="card-body">
+                            <h6 class="superbold mb-4"><i class="pi pi-shop color-me me-2"></i>DPD</h6>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    Dikukuhkan
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    Terbentuk
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    Dalam proses
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    0 <sup class="smaller text-gray">%</sup>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2 with-soft-border pb-2">
+                                <div class="align-self-center me-3 small color-me">
+                                    Belum Terbentuk
+                                </div>
+                                <div class="col align-self-center text-end small">
+                                    514 <i class="fa fa-caret-right text-dark"></i> <span class="text-gray">100 <sup class="smaller">%</sup></span>
+                                </div>
+                            </div>
 
                             
 
@@ -196,9 +260,6 @@ import {useAuthStore} from '@/stores/auth';
 import {formatDateTime,formatDate,formatPrice} from '@/services/onebizz';
 
 import{ref,onMounted} from 'vue';
-import { Bar,Line } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, PointElement,LineElement,CategoryScale, LinearScale } from 'chart.js'
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,LineElement,PointElement)
 
 const auth = useAuthStore()
 const loggedUser = auth.user;
@@ -206,76 +267,7 @@ const latest =ref([])
 const resume = ref({})
 const recents = ref([])
 
-const chartData = ref({
-  labels: [],  // Dates
-  datasets: []
-});
-
-const chartOptions = ref({
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top'
-    },
-    title: {
-      display: true,
-      text: 'Progress Transaksi Keuangan Cabang'
-    }
-  },
-  scales: {
-    y: {
-      beginAtZero: true,
-      suggestedMax: 300
-    }
-  }
-});
-
-function fetchDataChart(){
-    // Generate dummy data (last 7 days)
-  const labels = [];
-  const data = [];
-  const data2 = [];
-
-  const today = new Date();
-  for (let i = 6; i >= 0; i--) {
-    const date = new Date(today);
-    date.setDate(today.getDate() - i);
-    labels.push(date.toISOString().split('T')[0]); // YYYY-MM-DD format
-    data.push(Math.floor(Math.random() * 250)); // Dummy transaction value
-    data2.push(Math.floor(Math.random() * 80)); 
-  }
-  console.log('data:', chartData);
-
-  chartData.value = {
-    labels,
-    datasets: [
-      {
-        label: 'Penyetoran',
-        data:data,
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        tension: 0.3,
-        fill: false,
-        pointRadius: 4,
-        pointHoverRadius: 6
-      },
-      {
-        label: 'Penarikan',
-        data:data2,
-        borderColor: 'rgba(255, 165, 0, 1)',
-        backgroundColor: 'rgba(255, 165, 0, 0.2)',
-        tension: 0.3,
-        fill: false,
-        pointRadius: 4,
-        pointHoverRadius: 6
-      }
-    ]
-  };
-
-}
-
 onMounted(() => {
-  fetchDataChart();
   fetchData()
 });
 
@@ -289,11 +281,10 @@ async function fetchData() {
 
     const response = await api.post('/', postData)
     const datas = response.data.data
-    latest.value = datas.latest
-    resume.value = datas.resume
-    recents.value = datas.recents
-
-  } catch (error) {
+    resume.value = datas.resume;
+    latest.value = datas.latest;
+  
+} catch (error) {
     console.error('Error fetching data:', error)
   }
 }

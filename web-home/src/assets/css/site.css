@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+html,body{font-family: "Montserrat",sans-serif;font-size: .9rem;}
+
+:root {
+  --me-primary: #4A00E0;
+  --me-secondary:#8E2DE2;
+  --me-warning:#e89518;
+  --me-danger:#F62459;
+  --me-gray:#888;
+  --me-success:#00913e;
+  --me-base:#ECF0F1;
+  --me-dark:#666666;
+  --me-soft:#6C7A89;
+  --me-smoke:#d2d2d2;
+  --me-trans-primary:rgb(74,0,224,0.2);
+  --me-light:#f2f2f2;
+}
+.bg-me-primary{background-color: var(--me-primary) !important;color:#fff}
+.bg-me-secondary{background-color: var(--me-secondary) !important;}
+.bg-me-gradient{background: #8E2DE2;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+color:#fff
+}
+.bg-me-gradient-base{background: #C9D6FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.main{background-color:var(--me-base);height:100vh;}
+.main-wrapper{min-height: 100vh;padding:60px}
+.main-container{background-color: rgb(255,255,255,.8);border-radius: 30px;min-height: 20vh;padding:30px 80px 30px 80px;color:#333}
+a,a:visited{text-decoration: none;color:var(--me-primary)}
+.a4{font-size: .8em;}
+.ag-body,.ag-cell-value{font-size:.96em;color:var(--me-dark)!important}
+.ag-body a:link,.ag-body a:visited{color:var(--me-primary);font-weight: 600;text-decoration: dashed!important;}
+.ag-body a:hover{color:var(--me-warning);font-weight: 600;}
+.annotation{font-size: .8em;font-weight: 300;color:var(--me-gray)}
+.badge{font-weight: normal;font-size:.8em;padding: 4px 8px 4px 8px;border-radius: 20px;}
+.badge-success{background-color:var(--me-success);color:white}
+.badge-danger{background-color: var(--me-danger);color:#fff}
+.borderless{border:none}
+
+.btn{border-radius: 20px;padding-left: 20px;padding-right: 20px;}
+.btn-big{height: 40px;}
+.btn-outline-white{border-color: 1px solid #fff!important;}
+.btn-me{background-color: var(--me-primary) !important;color:#fff!important;}
+.btn-me:hover{background-color:var(--me-secondary);color:#fff}
+.btn-me-secondary{background-color:var(--me-secondary);color:#eee;}
+.btn-me-secondary:hover{background-color:var(--me-warning);color:#fff}
+.btn-white{background-color: #fff;}
+.btn-round{border-radius: 30px!important;}
+
+.card{border:none;border-radius: 20px;}
+.card .card-header{border: none;background-color: #fff;border-radius: 20px 20px 0px 0px!important;}
+.card .card-header .card-title{font-size:1.1em;margin-top: 10px;font-weight: 600;}
+.card .card-body{padding:20px}
+.card-footer{border: none;padding: 20px;}
+.card:hover{box-shadow:0 1px 12px 0 var(--me-trans-primary)}
+
+.detail-view .row{margin-bottom: 5px;min-height: 25px;}
+.detail-view .row:hover .form-control{box-shadow:0 3px 8px rgba(154,153,153,0.5)}
+.form-control,.form-select{margin-bottom:2px!important;min-height: 40px;font-size:1em}
+.form-control::placeholder{font-size: .8em;font-style: italic;color:#888}
+
+.header-end .ag-header-cell-label {justify-content: flex-end;}
+.header-center .ag-header-cell-label {justify-content: center;text-align:center!important;}
+.hero h1{font-weight: 600;}
+.hide{display: none;}
+.page-title{font-size: 1.8em;font-weight:600;margin-bottom: 20px;}
+.page-title .annotation{font-size: .9rem!important;}
+
+.receipt{font-family: 'Courier New', Courier, monospace;border-left:2px dashed #f2f2f2;border-right:2px dashed #f2f2f2;border-top:2px solid #f2f2f2;border-bottom:2px solid #f2f2f2;padding:20px;}
+.round-big{border-radius: 20px;}
+.section-caption{font-size:1.1em;margin-top: 10px;margin-bottom: 10px;font-weight: 600;}
+.smaller{font-size: .8em;}
+.smallest{font-size: .7em!important;}
+.shadow:hover{box-shadow: 5px 5px 10px 2px var(--me-trans-primary)!important;}
+.superbold{font-weight: 600;}
+.vh-full{height:70vh;overflow: scroll;}
+.vh-min-100{min-height: 100vh;overflow: scroll;}
+.with-soft-border{border-bottom: 1px solid #f2f2d2;}
+
+.rounded-big{border-radius: 15px !important}
+.section-caption{margin-top: 20px;margin-bottom:8px;font-size: 14px;font-weight:600;color:#395111}
+.smallest{font-size: .8em;}
+.swal-front {z-index: 2000 !important;}
+.swal2-title {color: #018786 !important;font-weight: 600;font-family: 'Caveat', sans-serif;}
+.swal2-icon {font-size: 1.1em;transform: scale(0.7); /* scale up all icons */}
+.swal-popup-rounded {border-radius: 30px !important;padding: 32px !important;box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;}
+.swal2-html-container {font-size: 14px !important;line-height: 1.6;color: #333;}
+.swal2-actions {margin-top: 28px !important;}
+.swal2-confirm,.swal2-cancel,.swal2-deny {font-family: 'Inter', sans-serif !important;font-size: 14px !important;font-weight: 600;padding: 10px 22px !important;border-radius: 999px !important;transition: all 0.2s ease;}
+.swal2-confirm {background-color: #018786 !important;color: #fff !important;}
+.swal2-confirm:hover {background-color: #016e6b !important;transform: translateY(-1px);}
+.swal2-cancel {background-color: #e0e0e0 !important;color: #333 !important;}
+.swal2-cancel:hover {background-color: #d5d5d5 !important;}
+
+.table-me{font-size: .95em!important;}
+.table-me {height: 10px!important;}
+.text-bold{font-weight: 600;}
+.text-danger{color:#F62459!important}
+.text-gray{color:#999}
+.text-me{color:var(--me-primary) !important;}
+.up-20{margin-top: -20px!important;}
+.with-border{border-bottom: 1px solid #f2f2f2;min-height: 25px;}
+.with-border-bold{border-bottom: 8px solid #f2f2f2;min-height: 25px;}
+.with-dashed{border-bottom: 2px dashed #f2f2f2;min-height: 10px;margin-bottom: 10px;}
+
+/** NAVBAR **/
+.navbar{font-size:1em;border-radius: 10px;text-transform: uppercase;height: 50px;}
+.nav-link{font-weight: 600;margin-right: 20px;}
+.navbar .nav-item{margin-right: 20px;}
+.dropdown-item{font-weight: 200;font-size:.95rem}
+.toggle-btn{cursor: pointer;}
+.nav-top .dropdown-menu{border: none!important;}
+

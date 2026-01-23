@@ -52,6 +52,22 @@ const auCheckStatus = async(req,res)=>{
     }   
 }
 
+const auCheckMobile = async(req,res)=>{
+     try{
+        const result = await MemberViewService.findByMobile(req.data.mobile)
+        res.status(200).json({
+            status:68,
+            data:result,
+        })
+    }
+    catch (err){
+        res.json({
+            "status": 60,
+            "message":err.message,
+        });
+    }   
+}
+
 export{
-    auRegister,auViewProcessed,auCheckStatus
+    auRegister,auViewProcessed,auCheckStatus,auCheckMobile
 }

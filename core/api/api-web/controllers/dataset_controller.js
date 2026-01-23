@@ -106,7 +106,24 @@ const dsMarital= async(req,res)=>{
     }   
 }
 
+const dsEducation= async(req,res)=>{
+    try{
+        const result = await dataService.getEducation()
+        res.json({
+            status:68,
+            data:result,
+        })
+    }
+    catch (err){
+        res.json({
+            "status": 60,
+            "message":err.message,
+        });
+    }   
+}
+
+
 
 export{
-    dsProvince,dsDistrict,dsSubdistrict,dsVillage,dsJob,dsMarital
+    dsProvince,dsDistrict,dsSubdistrict,dsVillage,dsJob,dsMarital,dsEducation
 }

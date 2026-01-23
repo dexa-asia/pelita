@@ -7,6 +7,9 @@ import Province from "#domain/area/province.js";
 import Village from "#domain/area/village.js";
 import Job from "#domain/models/job.js";
 import MaritalStatus from "#domain/models/marital_status.js";
+import SystemSource from "#domain/models/system_source.js";
+import SystemChanel from "#domain/models/system_chanel.js";
+import MemberStatus from "#domain/member/member_status.js";
 
 class MemberRepository{
 
@@ -18,7 +21,9 @@ class MemberRepository{
                 as:'member',
                 where:memberWhere,
                 include:[
-                    { model: MemberLevel,as:'level',attributes:['level']}
+                    { model: MemberLevel,as:'level',attributes:['level']},
+                    { model: SystemSource,as:'source',attributes:['source']},
+                    { model: SystemChanel,as:'chanel',attributes:['chanel']}
                 ],
                 attributes:['statusId','registerDate']
             },
@@ -31,7 +36,7 @@ class MemberRepository{
             include:includeClause,
             order:[['id','DESC']],
             limit:limit,
-            attributes:['memberId','name','gender','mobile','birthDate']
+            attributes:['memberId','name','gender','mobile','birthDate','age']
         })
     }
     static async findByMemberId(memberId){
@@ -43,6 +48,20 @@ class MemberRepository{
             return MemberData.findOne(
                 { 
                     where: { nik },
+                    attributes:['memberId','name']
+            });
+        }
+        catch(error){
+            throw error
+        }
+        
+    }
+
+    static async findByMemberByMobile(mobile){
+        try{
+            return MemberData.findOne(
+                { 
+                    where: { mobile },
                     attributes:['memberId','name']
             });
         }
@@ -76,7 +95,13 @@ class MemberRepository{
                 { model: Village, as: 'village', attributes: ['village'] },
                 { model: Job, as: 'job', required: false },
                 { model: MaritalStatus, as: 'marital', required: false },
-                { model: Member, as: 'member', attributes: ['registerDate'] },
+                { model: Member, as: 'member', attributes: ['registerDate','statusId'],
+                    include:[
+                        { model: SystemSource,as:'source',attributes:['source']},
+                        { model: SystemChanel,as:'chanel',attributes:['chanel']},
+                        { model: MemberStatus,as:'status',attributes:['status']}
+                    ]
+                 },
             ]
         })
     }

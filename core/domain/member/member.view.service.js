@@ -26,6 +26,9 @@ class MemberViewService{
                 registerDate:m.member.registerDate,
                 gender:m.gender,
                 district:m.district.remark,
+                source:m.member.source.source,
+                chanel:m.member.chanel.chanel,
+                age:m.age,
             }))
         }
         catch (error) {
@@ -58,13 +61,23 @@ class MemberViewService{
             card:imgPath+"cards/"+mb.card,
             photo: imgPath+"users/"+mb.photo,
             registerDate:mb.member.registerDate,
+            source:mb.member.source.source,
+            chanel:mb.member.chanel.chanel,
+            status:mb.member.status.status,
             lastUpdate:mb.lastUpdate,
+            statusId:mb.member.statusId,
         }
     }
 
     static async findByNik(nik){
         const result = await MemberRepository.findByMemberByNik(nik)
-        console.log(result.memberId)
+        if(result!==null){
+            return this.viewDetail(result)
+        }
+    }
+
+    static async findByMobile(mobile){
+        const result = await MemberRepository.findByMemberByMobile(oneUtils.normalizePhone(mobile))
         if(result!==null){
             return this.viewDetail(result)
         }

@@ -51,8 +51,9 @@ class MemberService{
                 birthDate: payload.birthDate,
                 jobId:payload.jobId,
                 marId:payload.marId,
+                eduId:payload.eduId,
                 avatar: "no_photo.png",
-                card: payload.nik+".png",
+                card: payload.nik+".jpg",
                 age:age,
                 lastUpdate:today
             })

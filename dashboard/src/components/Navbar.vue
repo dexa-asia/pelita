@@ -2,7 +2,7 @@
    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <span class="color-me superbold"><i class="pi pi-sparkles me-1"></i>Terra<span class="text-warning">Coop</span></span>
+                <span class="text-primary superbold"><i class="fa fa-fire me-1"></i>{{ appName }}</span>
             </a>
             
             <span class="toggle-btn" @click="handleToggleSidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
            
            <div class="collapse navbar-collapse nav-top" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown d-none">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="pi pi-envelope"></i> Message
                         </a>
@@ -21,7 +21,7 @@
                             <li><a class="dropdown-item" href="#">Logout</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown d-none">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                              <i class="pi pi-user"></i> {{ authStore.user?.name || 'Profile' }}
                         </a>
@@ -48,7 +48,7 @@ import { useAuthStore } from '@/stores/auth'
 
 const router = useRouter()
 const authStore = useAuthStore()
-
+const appName = import.meta.env.VITE_API_APP_NAME;
 function handleToggleSidebar() {
   // emits to parent    
   emit('toggle-sidebar')
