@@ -36,9 +36,18 @@
                             <div class="col-md-4 text-me-soft">Jenis Kelamin</div>
                             <div class="col">{{ mb.gender }}</div>
                         </div>
+                        
                         <div class="row">
                             <div class="col-md-4 text-me-soft">Status Marital</div>
                             <div class="col">{{ mb.marital }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 text-me-soft">Pekerjaan</div>
+                            <div class="col">{{ mb.job }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 text-me-soft">Pendidikan Terakhir</div>
+                            <div class="col">{{ mb.education }}</div>
                         </div>
                     </div>
                 </div>

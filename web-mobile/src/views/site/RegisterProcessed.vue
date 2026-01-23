@@ -43,13 +43,13 @@
                                     </div>
                                 </div>
 
-                                <p>Selamat Berjuang</p>
+                                <p>Selamat datang di Partai Pelita.<br/>Kehadiran Anda turut serta mendorong terciptanya bangsa yang dinamis dan progressif dalam perjuangan untuk terwujudnya kesejahteraan dan keadilan sosial bagi seluruh rakyat Indonesia</p>
                             </div>
                         </div>
                         
                         <div class="with-dashed pb-1"></div>
                         <div class="text-center mt-3 mb-2">
-                            <router-link class="btn btn-primary text-white" to="/">Kembali</router-link>
+                            <router-link class="btn btn-primary text-white d-none" to="/">Kembali</router-link>
                         </div>
 
                     </div>

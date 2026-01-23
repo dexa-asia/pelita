@@ -7,6 +7,7 @@ import Subdistrict from "#domain/area/subdistrict.js";
 import Village from "#domain/area/village.js";
 import Job from "#domain/models/job.js";
 import MaritalStatus from "#domain/models/marital_status.js";
+import EducationLevel from "#domain/models/education_level.js";
 
 
 const MemberData= db.define('member_data',{
@@ -112,6 +113,12 @@ const MemberData= db.define('member_data',{
     field: 'mar_id',
     defaultValue: null
   },
+  eduId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    field: 'edu_id',
+    defaultValue: null
+  },
   age: {
     type: DataTypes.INTEGER,
     allowNull: true,
@@ -206,6 +213,12 @@ MemberData.belongsTo(Job,{
   foreignKey: 'job_id',
   targetKey:'id',
   as:'job'
+});
+
+MemberData.belongsTo(EducationLevel,{
+  foreignKey: 'edu_id',
+  targetKey:'id',
+  as:'education'
 });
 
 MemberData.belongsTo(MaritalStatus,{

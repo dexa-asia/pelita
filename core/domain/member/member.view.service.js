@@ -58,6 +58,7 @@ class MemberViewService{
             email:usr.email,
             job:mb.job.job,
             marital:mb.marital.marital,
+            education:mb.education.level,
             card:imgPath+"cards/"+mb.card,
             photo: imgPath+"users/"+mb.photo,
             registerDate:mb.member.registerDate,

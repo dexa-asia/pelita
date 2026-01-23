@@ -10,6 +10,7 @@ import MaritalStatus from "#domain/models/marital_status.js";
 import SystemSource from "#domain/models/system_source.js";
 import SystemChanel from "#domain/models/system_chanel.js";
 import MemberStatus from "#domain/member/member_status.js";
+import EducationLevel from "#domain/models/education_level.js";
 
 class MemberRepository{
 
@@ -95,6 +96,7 @@ class MemberRepository{
                 { model: Village, as: 'village', attributes: ['village'] },
                 { model: Job, as: 'job', required: false },
                 { model: MaritalStatus, as: 'marital', required: false },
+                { model: EducationLevel, as: 'education', required: false },
                 { model: Member, as: 'member', attributes: ['registerDate','statusId'],
                     include:[
                         { model: SystemSource,as:'source',attributes:['source']},

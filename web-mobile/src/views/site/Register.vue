@@ -71,7 +71,7 @@
                             <div class="row d-flex mb-2">
                                 <div class="col-md-4 align-self-center">Nomor Whatsapp</div>
                                 <div class="col">
-                                    <input type="text" v-model="mobile" inputmode="numeric" placeholder="08xxx" class="form-control" @input="sanitizeMobile" required/>
+                                    <input type="text" v-model="mobile" inputmode="numeric" placeholder="08xxx" class="form-control" @input="sanitizeMobile" maxlength="20" required/>
                                     <div v-if="mobile && mobile.length < 10" class="nik-info text-danger mt-2 fst-italic small">
                                         Nomor whatsapp minimal 10 digit
                                     </div>

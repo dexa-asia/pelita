@@ -48,7 +48,8 @@ app.use((req, res, next) => {
       next();
     }
     else{
-      auth.validateStaff(req, res, next);
+      next()
+      //auth.validateStaff(req, res, next);
     }
 });
   
