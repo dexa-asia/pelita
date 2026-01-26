@@ -1,7 +1,7 @@
 <template>
     <main class="bg-me-gradient">
         <div class="row d-flex vh-100 justify-content-center">
-            <div class="col-10 col-lg-5 align-self-center">
+            <div class="col-12 col-md-10 col-lg-5 align-self-center">
                 
                 <div class="card">
                    <div class="card-body p-5">

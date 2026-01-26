@@ -61,7 +61,7 @@ const defaultColDef = ref({
 const fetchUsers = async () => {
   try {
     const postData = { uagent: 'vue-dashboard', data: JSON.stringify({}) };
-    const response = await api.post('/user/', postData);
+    const response = await api.post('/user', postData);
     setTimeout(() => {
       rowData.value = response.data.data;
     }, 200);

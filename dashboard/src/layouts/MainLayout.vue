@@ -36,9 +36,8 @@ function toggleSidebar(){
 </template>
 
 <style scoped>
-   .container-fluid, .row {height: calc(100vh - 100px); /* Adjust as needed */}
+   .container-fluid, .row {height: calc(100vh - 10px); /* Adjust as needed */}
    .main-content {margin-left: 0px;transition: margin-left 0.3s ease;padding: 20px 10px 10px 20px;overflow-y:auto; max-height: calc(100vh - 100px);}
    .main-content {transition: width 0.3s ease;}
-   .footer{padding: 8px;background-color:transparent!important}
-   .footer{color:#000;font-size:.9em}
+
 </style>

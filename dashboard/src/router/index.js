@@ -60,6 +60,12 @@ const router = createRouter({
           name:'member-view',
           component:() => import('@/views/member/View.vue'),
           meta:{title:'Detail Anggota'}
+        },
+        {
+          path:'update/:memberId',
+          name:'member-update',
+          component:() => import('@/views/member/Update.vue'),
+          meta:{title:'Update Anggota'}
         }
       ]
     },
@@ -89,6 +95,44 @@ const router = createRouter({
           component:() => import('@/views/user/Password.vue'),
           meta:{title:'Ubah Password'}
         },
+      ]
+    },
+    {
+      path: '/dpw',
+      component: MainLayout,
+      children:[
+        {
+          path:'',
+          name:'dpw-index',
+          component: () => import('@/views/dpw/Index.vue'),
+          meta:{
+            title:'DPW'
+          }
+        },
+        {
+          path:'preparing',
+          name:'dpw-prep',
+          component: () => import('@/views/dpw/Preparing.vue'),
+          meta:{
+            title:'DPW Persiapan'
+          }
+        },
+        {
+          path:'not-ready',
+          name:'dpw-not',
+          component: () => import('@/views/dpw/NotReady.vue'),
+          meta:{
+            title:'DPW Belum Terbentuk'
+          }
+        },
+        {
+          path:'view/:code',
+          name:'dpw-view',
+          component: () => import('@/views/dpw/View.vue'),
+          meta:{
+            title:'Detail DPW'
+          }
+        }
       ]
     },
     {

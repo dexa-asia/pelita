@@ -1,7 +1,7 @@
 <template>
     <main class="bg-me-gradient vh-min-100 pt-5 pb-5">
         <div class="row d-flex justify-content-center">
-            <div class="col-10 col-lg-5 align-self-center">
+            <div class="col-12 col-md-10 col-lg-5 align-self-center">
                 
                 <div class="card">
                    <div class="card-body p-5">
@@ -94,7 +94,7 @@
                             <div class="row d-flex mb-2">
                                 <div class="col-md-4 align-self-center">Pendidikan Terakhir</div>
                                 <div class="col">
-                                    <select id="eduid" v-model="eduId" class="form-select">
+                                    <select id="eduid" v-model="eduId" class="form-select" required="">
                                         <option v-for="e in educations" :value="e.id" :key="e.id">{{ e.level }}</option>
                                     </select>
                                 </div>
@@ -103,7 +103,7 @@
                             <div class="row d-flex mb-2">
                                 <div class="col-md-4 align-self-center">Pekerjaan</div>
                                 <div class="col">
-                                    <select id="jobid" v-model="jobId" class="form-select">
+                                    <select id="jobid" v-model="jobId" class="form-select" required="">
                                         <option v-for="j in jobs" :value="j.id" :key="j.id">{{ j.job }}</option>
                                     </select>
                                 </div>
@@ -112,7 +112,7 @@
                             <div class="row d-flex mb-2">
                                 <div class="col-md-4 align-self-center">Status Perkawinan</div>
                                 <div class="col">
-                                    <select id="marid" v-model="marId" class="form-select">
+                                    <select id="marid" v-model="marId" class="form-select" required="">
                                         <option v-for="m in maritals" :value="m.id" :key="m.id">{{ m.marital }}</option>
                                     </select>
                                 </div>
@@ -120,7 +120,7 @@
 
                             <div class="with-dashed pb-1"></div>
                             <div class="row d-flex mb-2">
-                                <div class="col-md-4 align-self-center">Alamat</div>
+                                <div class="col-md-4 align-self-center">Alamat Sesuai KTP</div>
                                 <div class="col">
                                     <input type="text" v-model="address" placeholder="Jalan atau Desa" class="form-control text-uppercase" required/>
                                 </div>
@@ -417,6 +417,7 @@
         // opsional: blokir jika input belum valid secara minimal
         if (nik.value.length !== 16) return true
         if (mobile.value.length < 10) return true
+        if (isReal.value !== true) return true
 
         return false
     })

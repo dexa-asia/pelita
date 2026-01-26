@@ -6,7 +6,43 @@
             <div class="annotation">Profil Detail Anggota</div>
             </div>
             <div class="col text-end align-item-center">
-                <router-link class="btn btn-me" :to="'/member'">List Anggota</router-link>
+                <div class="btn-group align-self-center" role="group" aria-label="Basic example">
+                    <button class="btn btn-me" @click="sendWelcome"><i class="fa fa-paper-plane"></i> Welcome</button>
+                    <div class="btn-group" role="group">
+                        <button
+                            type="button"
+                            class="btn btn-secondary dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Manage
+                        </button>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <router-link class="dropdown-item" :to="'/member/update/'+ mb.memberId">
+                                    <i class="fa fa-pencil"></i> Update Data
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link class="dropdown-item" :to="'/user/password/'+ mb.memberId">
+                                    <i class="fa fa-key"></i> Update Password
+                                </router-link>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" @click.prevent="blockMember">
+                                    <i class="fa fa-ban"></i> Blokir Member
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="#" @click.prevent="deleteData">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <router-link class="btn btn-me ms-1" :to="'/member'">List Anggota</router-link>
             </div>
         </div>
         <div class="row">
@@ -100,23 +136,6 @@
             </div>
             <div class="col-md-4">
                 
-                 <div class="card mb-3">
-                    <div class="card-header">
-                        <div class="card-title">Dokumen</div>
-                    </div>
-                    <div class="card-body">
-                        <img :src="mb.card" class="img-fluid"/>
-                    </div>
-                </div>
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <div class="card-title">Kartu Anggota</div>
-                    </div>
-                    <div class="card-body">
-                        <img :src="mb.card" class="img-fluid"/>
-                    </div>
-                </div>
-
                 <div class="card mb-3">
                     <div class="card-header">
                         <div class="card-title">Data System</div>
@@ -155,6 +174,24 @@
                         
                     </div>
                 </div>
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <div class="card-title">Dokumen</div>
+                    </div>
+                    <div class="card-body">
+                        <img :src="mb.card" class="img-fluid rounded"/>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <div class="card-title">Kartu Anggota</div>
+                    </div>
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+                
             </div>
         </div>
     </main>

@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-md-4 col-lg-3">Status</div>
                             <div class="col-md-8 col-lg-9">
-                            <span v-if="usr.Enabled === true" class="badge badge-success"><i class="fa fa-check"></i> Active</span>
+                            <span v-if="usr.IsEnabled === true" class="badge badge-success"><i class="fa fa-check"></i> Active</span>
                             <span v-else class="badge badge-danger"><i class="fa fa-ban"></i> Blocked</span>
                             </div>
                         </div>

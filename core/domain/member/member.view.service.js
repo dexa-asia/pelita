@@ -38,7 +38,7 @@ class MemberViewService{
 
     static async viewDetail(payload,origin){
         const mb = await MemberRepository.findDetailByMemberId(payload.memberId)
-        const usr = await UserRepository.findbyMemberId(payload.memberId)
+        const usr = await UserRepository.findByMemberId(payload.memberId)
         return {
             id:mb.id,
             memberId:mb.memberId,

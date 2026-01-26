@@ -1,7 +1,7 @@
 <template>
     <main class="bg-me-gradient">
         <div class="row d-flex vh-100 justify-content-center">
-            <div class="col-10 col-lg-5 align-self-center">
+            <div class="col-12 col-md-10 col-lg-5 align-self-center">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title"></div>
@@ -55,6 +55,13 @@
                                 </router-link>
                             </div>
                         </div>
+                        <div class="text-center">
+                            <h4 class="form-title mt-5">Bagikan Link Pendaftaran melalui QR</h4>
+                            <div class="col-8 col-md-6 ms-auto me-auto">
+                                <img :src="qrCodeImage" alt="QR Code" class="img-fluid w-100 mt-3"/>
+                            </div>
+                        </div>
+                        
                         
                     </div>
                 </div>
@@ -68,3 +75,73 @@
     .iconized{background-color: var(--me-light);border-radius: 20px;}
     .iconized:hover{background-color: var(--me-primary);color:#fff;}
 </style>
+<script setup>
+import {ref,onMounted} from 'vue';
+import QRCode from 'qrcode-generator';
+
+const qrData='https://partaipelita.or.id/daftar';
+const qrCodeImage = ref(null);
+
+const qrOptions={
+    width: 200,
+    height: 200,
+    typeNumber: 4,
+    correctLevel: 'M',
+}
+
+onMounted(()=>{
+    qrToImage()
+})
+
+
+function qrToImage() {
+    const data = qrData;
+    const qr = QRCode(0, 'M');
+    qr.addData(data);
+    qr.make();
+
+    const moduleCount = qr.getModuleCount();
+    const cellSize = 6;
+    const margin = 4;
+
+    // Additional text you want to display
+    //const extraText = `${this.st.name} - ${this.st.nisn}`;
+    const extraText = `${qrData}`;
+    const fontSize = 16;
+    const textPadding = 10;
+
+    // Calculate size
+    const qrSize = moduleCount * cellSize + margin * 2;
+    const extraHeight = fontSize + textPadding * 2;
+    const totalHeight = qrSize + extraHeight;
+
+    // Create canvas
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = qrSize;
+    canvas.height = totalHeight;
+
+    // White background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw QR code
+    ctx.fillStyle = '#000000';
+    for (let row = 0; row < moduleCount; row++) {
+        for (let col = 0; col < moduleCount; col++) {
+            if (qr.isDark(row, col)) {
+                ctx.fillRect(col * cellSize + margin, row * cellSize + margin, cellSize, cellSize);
+            }
+        }
+    }
+
+    // Draw text
+    ctx.font = `${fontSize}px Arial`;
+    ctx.fillStyle = '#000000';
+    ctx.textAlign = 'center';
+    //ctx.fillText(extraText, canvas.width / 2, qrSize + fontSize + textPadding / 2);
+
+    // Save image as base64
+    qrCodeImage.value = canvas.toDataURL('image/png');
+}
+</script>

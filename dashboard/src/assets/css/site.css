@@ -54,7 +54,8 @@ a,a:visited{text-decoration: none;color:var(--me-primary)}
 .detail-view .row:hover .form-control{box-shadow:0 3px 8px rgba(154,153,153,0.5)}
 .form-control,.form-select{margin-bottom:2px!important;min-height: 40px;font-size:1em}
 .form-control::placeholder{font-size: .8em;font-style: italic;color:#888}
-
+.footer{padding: 8px;background-color:transparent!important}
+.footer{color:#000;font-size:.9em}
 .header-end .ag-header-cell-label {justify-content: flex-end;}
 .header-center .ag-header-cell-label {justify-content: center;text-align:center!important;}
 .hide{display: none;}

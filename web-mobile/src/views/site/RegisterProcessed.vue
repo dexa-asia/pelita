@@ -1,7 +1,7 @@
 <template>
     <main class="bg-me-gradient">
         <div class="row d-flex vh-100 justify-content-center">
-            <div class="col-10 col-lg-5 align-self-center">
+            <div class="col-12 col-md-10 col-lg-5 align-self-center">
                 
                 <div class="card">
                    <div class="card-body p-5">
@@ -11,37 +11,40 @@
                             </router-link>
                             <h1 class="form-title mt-3">Registrasi Diproses</h1>
                             <div class="text-gray mt-3 mb-5">
-                                <p>Terimakasih telah mengisi form pendaftaran menjadi anggota Partai Pelita.<br/>Berikut ini data keanggotaan anda.</p>
+                                <p>Terimakasih telah mengisi form pendaftaran menjadi anggota Partai Pelita.</p>
                                 
-                                <div class="d-flex mb-2 text-dark">
-                                    <div class="col text-end pe-2">Nomor Pendaftaran : </div>
-                                    <div class="col text-start">{{ member.memberId }}</div>
-                                </div>
-                                <div class="d-flex mb-2 text-dark">
-                                    <div class="col text-end pe-2">Nama Lengkap : </div>
-                                    <div class="col text-start">{{ member.name }}</div>
-                                </div>
-                                <div class="d-flex mb-2 text-dark">
-                                    <div class="col text-end pe-2">NIK : </div>
-                                    <div class="col text-start">{{ member.nik }}</div>
-                                </div>
-                                <div class="d-flex mb-2 text-dark">
-                                    <div class="col text-end pe-2">NO WHATSAPP : </div>
-                                    <div class="col text-start">{{ member.mobileDecoded }}</div>
-                                </div>
-                                <div class="d-flex mb-4 text-dark">
-                                    <div class="col text-end pe-2">Wilayah : </div>
-                                    <div class="col text-start">{{ member.district }}</div>
-                                </div>
-                                <div class="d-flex mb-4 text-dark">
-                                    <div class="col text-end pe-2">Alamat : </div>
-                                    <div class="col text-start">
-                                        {{ member.address }}<br/>
-                                        <span class="text-gray">KELURAHAN</span> {{ member.village }}<br/>
-                                        <span class="text-gray">KECAMATAN</span> {{ member.subdistrict }}<br/>
-                                        {{ member.district }}
+                                <div class="register-confirm d-none">
+                                    <div class="d-flex mb-2 text-dark">
+                                        <div class="col text-end pe-2">Nomor Pendaftaran : </div>
+                                        <div class="col text-start">{{ member.memberId }}</div>
+                                    </div>
+                                    <div class="d-flex mb-2 text-dark">
+                                        <div class="col text-end pe-2">Nama Lengkap : </div>
+                                        <div class="col text-start">{{ member.name }}</div>
+                                    </div>
+                                    <div class="d-flex mb-2 text-dark">
+                                        <div class="col text-end pe-2">NIK : </div>
+                                        <div class="col text-start">{{ member.nik }}</div>
+                                    </div>
+                                    <div class="d-flex mb-2 text-dark">
+                                        <div class="col text-end pe-2">NO WHATSAPP : </div>
+                                        <div class="col text-start">{{ member.mobileDecoded }}</div>
+                                    </div>
+                                    <div class="d-flex mb-4 text-dark">
+                                        <div class="col text-end pe-2">Wilayah : </div>
+                                        <div class="col text-start">{{ member.district }}</div>
+                                    </div>
+                                    <div class="d-flex mb-4 text-dark">
+                                        <div class="col text-end pe-2">Alamat : </div>
+                                        <div class="col text-start">
+                                            {{ member.address }}<br/>
+                                            <span class="text-gray">KELURAHAN</span> {{ member.village }}<br/>
+                                            <span class="text-gray">KECAMATAN</span> {{ member.subdistrict }}<br/>
+                                            {{ member.district }}
+                                        </div>
                                     </div>
                                 </div>
+                                
 
                                 <p>Selamat datang di Partai Pelita.<br/>Kehadiran Anda turut serta mendorong terciptanya bangsa yang dinamis dan progressif dalam perjuangan untuk terwujudnya kesejahteraan dan keadilan sosial bagi seluruh rakyat Indonesia</p>
                             </div>

@@ -86,8 +86,9 @@ export default {
         ],
 
         dpwNav: [
-            { label: 'Persiapan', route: '/dpw/preparing' },
             { label: 'Aktif', route: '/dpw' },
+            { label: 'Persiapan', route: '/dpw/preparing' },
+            { label: 'Belum Terbentuk', route: '/dpw/not-ready' },
             
         ],
 

@@ -468,26 +468,17 @@
 
 .theme-dark .login-box{background-color: #000!important;}
 .theme-dark .login-title{color:#fff}
-.theme-dark .login-right .login-title {
-  color: #E0E6ED!important;
-}
+.theme-dark .login-right .login-title {color: #E0E6ED!important;}
 .theme-dark .text-muted{color:#999!important}
 .theme-dark #app{background-color: #141B23;}
+.theme-dark .footer{color:#fff}
 .theme-dark .text-dark{color:#D1B07A!important}
 .theme-dark .top{color:#E0E6ED}
 .theme-dark .bg-white{background-color: #E0E6ED!important;}
 .theme-dark .with-border-bold{border-bottom: 1px dashed #000;min-height: 25px;gap: 10px;}
 .theme-dark .bdr{border-right:1px solid rgba(0,0,0,0.6)}
 .theme-dark .hover-effect:hover{background-color:#1F2A36;border-radius: 20px;padding-left: 10px;padding-right: 10px;}
-.theme-dark .table td {
-  background-color: #141B23;
-  border-bottom: 1px solid #2A3642;
-  color:#888
-}
-
-.theme-dark .ag-theme-quartz .ag-header-cell-text {
-  color: #E6EDF3;
-  font-weight: 600;
-}
+.theme-dark .table td {background-color: #141B23;border-bottom: 1px solid #2A3642;color:#888}
+.theme-dark .ag-theme-quartz .ag-header-cell-text {color: #E6EDF3;font-weight: 600;}
 
 

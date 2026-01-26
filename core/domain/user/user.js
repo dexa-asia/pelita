@@ -3,6 +3,7 @@ import db from "#config/database.js";
 import MemberData from "#domain/member/member_data.js";
 import UserPrivilege from "#domain/user/user_privilege.js";
 import OneSecurity from "#utils/one.security.js";
+import OneUtils from "#utils/one.utils.js";
 import Notifier from "#adapter/notifier.js";
 
 const User=db.define('user',{
@@ -198,7 +199,7 @@ User.login = async(username,password)=>{
     },
   });
   if(user !== null){
-    const checkPass = await OneUtils.checkPassword(password,user[0].primary_auth,user[0].verification_auth);
+    const checkPass = await OneSecurity.checkPassword(password,user[0].primary_auth,user[0].verification_auth);
     
     if(checkPass){
       const response ={
@@ -243,7 +244,7 @@ User.loginAdmin = async(username,password)=>{
   });
 
   if(user.length > 0){
-    const checkP = await OneUtils.checkPassword(password,user[0].primary_auth,user[0].verification_auth);
+    const checkP = await OneSecurity.checkPassword(password,user[0].primary_auth,user[0].verification_auth);
     if(checkP){
       const response ={
         "status":68,

@@ -24,7 +24,8 @@ class DatasetService{
 
     static async getJob(){
         return await Job.findAll({
-            attributes:['id','job']
+            attributes:['id','job'],
+            order:[['job']]
         })
     }
 
